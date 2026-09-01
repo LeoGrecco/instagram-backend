@@ -1,0 +1,29 @@
+{
+  "name": "instagram-backend",
+  "version": "1.0.0",
+  "description": "A backend service to integrate with the Instagram API and fetch posts from a user's feed.",
+  "main": "src/app.ts",
+  "scripts": {
+    "start": "ts-node src/app.ts",
+    "test": "jest"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "axios": "^0.21.1",
+    "dotenv": "^10.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^4.3.2",
+    "ts-node": "^10.0.0",
+    "jest": "^27.0.0",
+    "@types/jest": "^27.0.0",
+    "@types/node": "^16.0.0"
+  },
+  "keywords": [
+    "instagram",
+    "api",
+    "backend"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}
