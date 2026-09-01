@@ -1,16 +1,14 @@
 import express from 'express';
-import { json } from 'body-parser';
 import { setRoutes } from './routes/instagram.routes';
-import { config } from './config/env';
+import { ENV } from './config/env';
 
 const app = express();
-const PORT = process.env.PORT || 3000;
 
-app.use(json());
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-setRoutes(app);
+app.use('/', setRoutes());
 
-app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+app.listen(ENV.PORT, () => {
+  console.log(`Server is running on http://localhost:${ENV.PORT}`);
 });
