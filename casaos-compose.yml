@@ -2,10 +2,12 @@ version: '3.9'
 
 services:
   instagram-backend:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: node:20-alpine
     container_name: instagram-backend
+    working_dir: /app
+    volumes:
+      - ./:/app
+    command: sh -c "npm install && npm run build && npm start"
     restart: unless-stopped
     ports:
       - '3000:3000'
@@ -14,7 +16,7 @@ services:
       INSTAGRAM_API_URL: https://graph.instagram.com
       INSTAGRAM_ACCESS_TOKEN: ${INSTAGRAM_ACCESS_TOKEN:-your_access_token}
     healthcheck:
-      test: ["CMD", "node", "-e", "require('http').get('http://localhost:3000/posts', (res) => process.exit(res.statusCode === 200 ? 0 : 1)).on('error', () => process.exit(1));"]
+      test: ["CMD-SHELL", "wget -q --spider http://localhost:3000/posts || exit 1"]
       interval: 30s
       timeout: 10s
       retries: 5

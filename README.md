@@ -50,9 +50,40 @@ instagram-backend
    ```
 4. Create a `.env` file based on the `.env.example` file and fill in your Instagram API credentials.
 
+## CasaOS deployment (manual)
+
+Follow these steps to run the backend manually in CasaOS using Docker Compose:
+
+1. Open the project folder in CasaOS or upload it to a folder like `/appdata/instagram-backend`.
+2. Edit the `.env` file and add your Instagram token:
+   ```env
+   PORT=3000
+   INSTAGRAM_API_URL=https://graph.instagram.com
+   INSTAGRAM_ACCESS_TOKEN=SEU_TOKEN_REAL
+   ```
+3. Make sure the project contains the `docker-compose.yml` or `casaos-compose.yml` file.
+4. Start the container:
+   ```bash
+   docker compose up -d --build
+   ```
+   If you are using the CasaOS-specific compose file:
+   ```bash
+   docker compose -f casaos-compose.yml up -d
+   ```
+5. Check the logs:
+   ```bash
+   docker compose logs -f instagram-backend
+   ```
+6. If everything started correctly, the API will be available at:
+   ```text
+   http://SEU_IP_DO_CASAOS:3000/posts
+   ```
+
+> The `INSTAGRAM_ACCESS_TOKEN` value is required. Without it, the endpoint `/posts` will return an error.
+
 ## Usage
 
-To start the application, run:
+To start the application locally, run:
 ```
 npm start
 ```
