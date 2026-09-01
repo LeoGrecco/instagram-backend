@@ -9,10 +9,18 @@ services:
     restart: unless-stopped
     ports:
       - '3000:3000'
+    volumes:
+      - /DATA/AppData/instagram-backend:/app
     environment:
       PORT: 3000
       INSTAGRAM_API_URL: https://graph.instagram.com
       INSTAGRAM_ACCESS_TOKEN: ${INSTAGRAM_ACCESS_TOKEN:-your_access_token}
+    labels:
+      - 'io.casaos.app.enable=true'
+      - 'io.casaos.app.name=Instagram Backend'
+      - 'io.casaos.app.category=Tools'
+      - 'io.casaos.app.port=3000'
+      - 'io.casaos.app.url=http://localhost:3000'
     healthcheck:
       test: ["CMD", "node", "-e", "require('http').get('http://localhost:3000/posts', (res) => process.exit(res.statusCode === 200 ? 0 : 1)).on('error', () => process.exit(1));"]
       interval: 30s

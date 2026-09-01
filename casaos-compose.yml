@@ -6,7 +6,7 @@ services:
     container_name: instagram-backend
     working_dir: /app
     volumes:
-      - ./:/app
+      - /DATA/AppData/instagram-backend:/app
     command: sh -c "npm install && npm run build && npm start"
     restart: unless-stopped
     ports:
@@ -15,6 +15,12 @@ services:
       PORT: 3000
       INSTAGRAM_API_URL: https://graph.instagram.com
       INSTAGRAM_ACCESS_TOKEN: ${INSTAGRAM_ACCESS_TOKEN:-your_access_token}
+    labels:
+      - 'io.casaos.app.enable=true'
+      - 'io.casaos.app.name=Instagram Backend'
+      - 'io.casaos.app.category=Tools'
+      - 'io.casaos.app.port=3000'
+      - 'io.casaos.app.url=http://localhost:3000'
     healthcheck:
       test: ["CMD-SHELL", "wget -q --spider http://localhost:3000/posts || exit 1"]
       interval: 30s
