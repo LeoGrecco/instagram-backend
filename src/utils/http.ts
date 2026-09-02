@@ -5,7 +5,8 @@ export const get = async (url: string, headers?: Record<string, string>) => {
         const response = await axios.get(url, { headers });
         return response.data;
     } catch (error) {
-        throw new Error(`GET request failed: ${error.message}`);
+        const message = error instanceof Error ? error.message : 'Unknown error';
+        throw new Error(`GET request failed: ${message}`);
     }
 };
 
@@ -14,6 +15,7 @@ export const post = async (url: string, data: any, headers?: Record<string, stri
         const response = await axios.post(url, data, { headers });
         return response.data;
     } catch (error) {
-        throw new Error(`POST request failed: ${error.message}`);
+        const message = error instanceof Error ? error.message : 'Unknown error';
+        throw new Error(`POST request failed: ${message}`);
     }
 };

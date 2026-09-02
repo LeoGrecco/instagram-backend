@@ -9,8 +9,6 @@ services:
     restart: unless-stopped
     ports:
       - '3000:3000'
-    volumes:
-      - /DATA/AppData/instagram-backend:/app
     environment:
       PORT: 3000
       INSTAGRAM_API_URL: https://graph.instagram.com

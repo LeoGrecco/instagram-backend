@@ -2,12 +2,11 @@ version: '3.9'
 
 services:
   instagram-backend:
-    image: node:20-alpine
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: instagram-backend
-    working_dir: /app
-    volumes:
-      - /DATA/AppData/instagram-backend:/app
-    command: sh -c "npm install && npm run build && npm start"
+    command: node dist/app.js
     restart: unless-stopped
     ports:
       - '3000:3000'
