@@ -12,3 +12,20 @@ export interface User {
     full_name: string;
     profile_picture: string;
 }
+
+export interface Account {
+    id: string;
+    name: string;
+    email: string;
+    passwordHash: string;
+    instagramAccessToken?: string;
+    plan: 'starter' | 'studio' | 'agency';
+    createdAt: string;
+}
+
+export interface SessionAccount {
+    id: string;
+    name: string;
+    email: string;
+    createdAt: string;
+}

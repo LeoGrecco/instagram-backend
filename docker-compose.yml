@@ -13,6 +13,8 @@ services:
       PORT: 3000
       INSTAGRAM_API_URL: https://graph.instagram.com
       INSTAGRAM_ACCESS_TOKEN: ${INSTAGRAM_ACCESS_TOKEN:-your_access_token}
+      APP_SECRET: ${APP_SECRET:-change-me-in-production}
+      SESSION_TTL_HOURS: ${SESSION_TTL_HOURS:-24}
     labels:
       - 'io.casaos.app.enable=true'
       - 'io.casaos.app.name=Instagram Backend'

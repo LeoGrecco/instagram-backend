@@ -1,395 +1,57 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Instagram Backend - Manual de Setup</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            overflow: hidden;
-        }
-
-        .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 40px 30px;
-            text-align: center;
-        }
-
-        .header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-        }
-
-        .header p {
-            font-size: 1.1em;
-            opacity: 0.9;
-        }
-
-        .content {
-            padding: 40px;
-        }
-
-        .section {
-            margin-bottom: 40px;
-        }
-
-        .section h2 {
-            color: #667eea;
-            font-size: 1.8em;
-            margin-bottom: 20px;
-            border-left: 4px solid #667eea;
-            padding-left: 15px;
-        }
-
-        .section h3 {
-            color: #764ba2;
-            font-size: 1.3em;
-            margin-top: 25px;
-            margin-bottom: 15px;
-        }
-
-        .step {
-            background: #f8f9fa;
-            padding: 20px;
-            margin-bottom: 15px;
-            border-radius: 8px;
-            border-left: 4px solid #667eea;
-        }
-
-        .step strong {
-            color: #667eea;
-            display: block;
-            margin-bottom: 8px;
-        }
-
-        .code-block {
-            background: #2d2d2d;
-            color: #f8f8f2;
-            padding: 15px;
-            border-radius: 6px;
-            font-family: 'Courier New', monospace;
-            font-size: 0.95em;
-            overflow-x: auto;
-            margin: 15px 0;
-            line-height: 1.4;
-        }
-
-        .warning {
-            background: #fff3cd;
-            border-left: 4px solid #ffc107;
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 6px;
-            color: #856404;
-        }
-
-        .success {
-            background: #d4edda;
-            border-left: 4px solid #28a745;
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 6px;
-            color: #155724;
-        }
-
-        .endpoints {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 8px;
-            margin-top: 20px;
-        }
-
-        .endpoint {
-            margin-bottom: 15px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #dee2e6;
-        }
-
-        .endpoint:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
-        }
-
-        .endpoint-method {
-            display: inline-block;
-            background: #667eea;
-            color: white;
-            padding: 4px 12px;
-            border-radius: 4px;
-            font-weight: bold;
-            font-size: 0.9em;
-            margin-right: 10px;
-        }
-
-        .endpoint-path {
-            font-family: 'Courier New', monospace;
-            color: #764ba2;
-            font-weight: bold;
-        }
-
-        .checklist {
-            list-style: none;
-        }
-
-        .checklist li {
-            padding: 10px;
-            margin-bottom: 5px;
-            background: #f8f9fa;
-            border-radius: 4px;
-            border-left: 3px solid #667eea;
-        }
-
-        .checklist li:before {
-            content: "✓ ";
-            color: #28a745;
-            font-weight: bold;
-            margin-right: 8px;
-        }
-
-        .footer {
-            background: #f8f9fa;
-            padding: 30px;
-            text-align: center;
-            color: #666;
-            border-top: 1px solid #dee2e6;
-        }
-
-        .logo-section {
-            text-align: center;
-            font-size: 3em;
-            margin-bottom: 20px;
-        }
-
-        .links {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-            margin-top: 20px;
-        }
-
-        .links a {
-            display: inline-block;
-            background: #667eea;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 6px;
-            text-decoration: none;
-            transition: background 0.3s;
-        }
-
-        .links a:hover {
-            background: #764ba2;
-        }
-
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 1.8em;
-            }
-
-            .content {
-                padding: 20px;
-            }
-
-            .section h2 {
-                font-size: 1.4em;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SocialDeck: seu Instagram, publicado onde sua marca vive.">
+  <title>SocialDeck | Instagram para sites</title>
+  <style>
+    :root { --ink:#17201c; --muted:#68736c; --paper:#f7f4ed; --white:#fffdf8; --coral:#e8644e; --coral-dark:#b94132; --lime:#dce87a; --mint:#d8eee2; --line:rgba(23,32,28,.14); --shadow:0 24px 80px rgba(40,50,42,.12); }
+    * { box-sizing:border-box; } html { scroll-behavior:smooth; } body { margin:0; color:var(--ink); background:var(--paper); font-family:Inter,ui-sans-serif,system-ui,-apple-system,sans-serif; line-height:1.5; } button,input,select { font:inherit; } a { color:inherit; text-decoration:none; }
+    .shell { width:min(1180px,calc(100% - 48px)); margin:0 auto; } .topbar { display:flex; align-items:center; justify-content:space-between; padding:24px 0; }
+    .brand { display:flex; gap:11px; align-items:center; font-weight:850; letter-spacing:-.05em; font-size:1.25rem; } .brand-mark { width:33px; height:33px; display:grid; place-items:center; color:var(--paper); background:var(--ink); border-radius:10px 10px 10px 2px; font-size:17px; }
+    .nav { display:flex; gap:26px; align-items:center; color:var(--muted); font-size:.92rem; } .nav a:hover { color:var(--coral-dark); }
+    .button { border:0; cursor:pointer; display:inline-flex; align-items:center; justify-content:center; gap:9px; border-radius:9px; padding:12px 17px; font-weight:750; transition:transform .2s,background .2s,box-shadow .2s; } .button:hover { transform:translateY(-2px); } .button-primary { background:var(--coral); color:#fff; box-shadow:0 12px 25px rgba(232,100,78,.22); } .button-primary:hover { background:var(--coral-dark); } .button-quiet { background:var(--ink); color:var(--paper); } .button-light { background:var(--white); color:var(--ink); border:1px solid var(--line); } .button-text { background:transparent; color:var(--muted); padding-left:0; padding-right:0; }
+    .hero { position:relative; overflow:hidden; padding:82px 0 105px; } .hero:before { content:''; position:absolute; inset:0 -20vw 0 45%; background:radial-gradient(circle at 45% 45%,rgba(220,232,122,.72),transparent 37%),radial-gradient(circle at 75% 35%,rgba(216,238,226,.95),transparent 34%); z-index:-1; } .hero-grid { display:grid; grid-template-columns:minmax(0,.9fr) minmax(390px,.75fr); gap:70px; align-items:center; }
+    .eyebrow { display:inline-flex; gap:8px; align-items:center; text-transform:uppercase; letter-spacing:.13em; font-size:.7rem; font-weight:850; color:var(--coral-dark); } .eyebrow:before { content:''; width:27px; height:2px; background:var(--coral); } h1,h2,h3 { margin:0; letter-spacing:-.055em; line-height:1.03; } h1 { max-width:700px; margin-top:22px; font-family:Georgia,serif; font-size:clamp(3.3rem,7vw,6.9rem); font-weight:500; } h1 em { color:var(--coral); font-style:normal; } .hero-copy { max-width:530px; margin:28px 0 32px; color:var(--muted); font-size:1.08rem; } .hero-actions { display:flex; flex-wrap:wrap; gap:12px; } .signal { display:flex; gap:28px; margin-top:45px; padding-top:20px; border-top:1px solid var(--line); font-size:.83rem; color:var(--muted); } .signal strong { display:block; color:var(--ink); font-size:1.12rem; }
+    .visual { position:relative; min-height:470px; } .phone { position:absolute; z-index:2; right:50px; top:20px; width:260px; height:480px; border:9px solid var(--ink); border-radius:34px; background:var(--white); box-shadow:24px 30px 0 rgba(23,32,28,.11); overflow:hidden; transform:rotate(5deg); } .phone-top { height:45px; display:flex; align-items:center; justify-content:space-between; padding:0 18px; border-bottom:1px solid var(--line); font-size:.67rem; font-weight:800; } .feed { padding:15px; } .feed-head { display:flex; align-items:center; gap:9px; margin-bottom:14px; font-size:.72rem; font-weight:800; } .avatar { width:26px; height:26px; border-radius:50%; background:var(--coral); } .post-image { height:205px; border-radius:14px; background:linear-gradient(135deg,#e8644e 10%,#f5c37c 42%,#5c8c70 43%,#17352d 92%); position:relative; overflow:hidden; } .post-image:after { content:'SOCIAL\A DECK'; white-space:pre; position:absolute; left:18px; bottom:15px; color:#fff; font-weight:900; letter-spacing:.07em; line-height:.9; font-size:1.45rem; } .post-meta { display:flex; justify-content:space-between; padding:13px 0; font-size:.72rem; color:var(--muted); } .mini-card { position:absolute; left:20px; bottom:36px; z-index:3; background:var(--ink); color:var(--paper); padding:20px; width:205px; border-radius:13px; box-shadow:var(--shadow); transform:rotate(-7deg); } .mini-card b { display:block; color:var(--lime); font-size:2rem; letter-spacing:-.08em; } .mini-card span { font-size:.76rem; color:#c0c8c1; }
+    .section { padding:108px 0; } .section-head { display:flex; justify-content:space-between; align-items:end; gap:30px; margin-bottom:42px; } .section h2 { font-family:Georgia,serif; font-size:clamp(2.6rem,5vw,4.8rem); font-weight:500; max-width:670px; } .section-intro { max-width:370px; color:var(--muted); } .feature-grid { display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid var(--line); } .feature { padding:28px 26px 30px 0; border-bottom:1px solid var(--line); } .feature+.feature { padding-left:26px; border-left:1px solid var(--line); } .feature-icon { color:var(--coral); font-size:1.5rem; margin-bottom:28px; } .feature h3 { font-size:1.2rem; margin-bottom:12px; letter-spacing:-.03em; } .feature p { color:var(--muted); font-size:.9rem; max-width:285px; }
+    .pricing { background:var(--ink); color:var(--paper); } .pricing .section-intro { color:#aeb9b0; } .pricing-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; } .plan { padding:30px; border:1px solid rgba(255,255,255,.18); min-height:310px; position:relative; } .plan.featured { background:var(--lime); color:var(--ink); border-color:var(--lime); transform:translateY(-12px); } .plan-label { font-size:.7rem; text-transform:uppercase; letter-spacing:.12em; font-weight:850; } .plan h3 { font-size:1.8rem; margin:18px 0 8px; } .price { font-family:Georgia,serif; font-size:3rem; letter-spacing:-.06em; } .price small { font:400 .82rem Inter,sans-serif; letter-spacing:0; color:var(--muted); } .plan ul { list-style:none; padding:12px 0 0; margin:0; color:#c4cec7; font-size:.87rem; line-height:2; } .featured ul { color:#52604e; } .plan li:before { content:'↗'; color:var(--coral); margin-right:8px; font-weight:900; }
+    .manual { background:var(--mint); } .manual-grid { display:grid; grid-template-columns:.75fr 1.25fr; gap:70px; align-items:start; } .steps { display:grid; gap:9px; } .step { display:flex; gap:18px; padding:21px 0; border-bottom:1px solid rgba(23,32,28,.18); } .step-number { font-family:Georgia,serif; font-size:1.6rem; color:var(--coral); } .step h3 { font-size:1rem; letter-spacing:-.02em; margin-bottom:4px; } .step p { margin:0; color:var(--muted); font-size:.86rem; } .footer { padding:35px 0; border-top:1px solid var(--line); display:flex; justify-content:space-between; color:var(--muted); font-size:.8rem; }
+    .screen { display:none; min-height:100vh; } .screen.active { display:block; } .auth-screen { background:var(--ink); color:var(--paper); padding:24px 0; } .auth-wrap { min-height:calc(100vh - 48px); display:grid; place-items:center; } .auth-box { width:min(480px,100%); background:var(--white); color:var(--ink); padding:36px; border-radius:16px; box-shadow:var(--shadow); } .auth-box h2 { font-family:Georgia,serif; font-size:2.6rem; font-weight:500; margin:24px 0 8px; } .auth-box p { color:var(--muted); margin:0 0 24px; } .auth-tabs { display:flex; gap:4px; padding:4px; background:#edf0e9; border-radius:9px; } .auth-tabs button { flex:1; border:0; cursor:pointer; padding:9px; border-radius:7px; background:transparent; color:var(--muted); font-weight:700; font-size:.75rem; } .auth-tabs button.active { background:var(--white); color:var(--ink); box-shadow:0 2px 8px rgba(0,0,0,.08); } .form { display:grid; gap:13px; } label { color:var(--muted); font-size:.78rem; font-weight:750; } input,select { width:100%; border:1px solid var(--line); background:#fff; padding:13px 14px; border-radius:8px; color:var(--ink); outline:none; } input:focus,select:focus { border-color:var(--coral); box-shadow:0 0 0 3px rgba(232,100,78,.12); } .field { display:grid; gap:6px; } .form .button { margin-top:6px; } .form-message { min-height:20px; margin:0!important; font-size:.8rem; color:var(--coral-dark)!important; }
+    .dashboard { background:#eef0e8; min-height:100vh; } .dash-layout { display:grid; grid-template-columns:245px 1fr; min-height:100vh; } .sidebar { background:var(--ink); color:var(--paper); padding:28px 18px; display:flex; flex-direction:column; } .sidebar .brand { padding:0 11px 40px; } .side-nav { display:grid; gap:4px; } .side-nav button { text-align:left; background:transparent; color:#9aa69d; border:0; padding:12px; border-radius:7px; cursor:pointer; font-weight:650; } .side-nav button.active,.side-nav button:hover { background:#2a3730; color:var(--paper); } .side-bottom { margin-top:auto; border-top:1px solid #39453e; padding:20px 12px 0; color:#9aa69d; font-size:.8rem; } .dash-main { padding:28px clamp(22px,4vw,54px); max-width:1300px; width:100%; } .dash-top { display:flex; justify-content:space-between; align-items:center; gap:15px; margin-bottom:45px; } .dash-top h1 { font:500 clamp(2rem,4vw,3.4rem) Georgia,serif; margin:0; } .dash-top p { color:var(--muted); margin:6px 0 0; } .dash-actions { display:flex; gap:8px; } .dash-section { display:none; animation:enter .35s ease; } .dash-section.active { display:block; } @keyframes enter { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:none; } } .metrics { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:28px; } .metric { background:var(--white); border:1px solid var(--line); padding:20px; border-radius:11px; } .metric span { display:block; color:var(--muted); font-size:.76rem; } .metric strong { display:block; font:500 2.25rem Georgia,serif; margin-top:10px; letter-spacing:-.06em; } .dashboard-grid { display:grid; grid-template-columns:1.25fr .75fr; gap:13px; } .panel { background:var(--white); border:1px solid var(--line); padding:24px; border-radius:11px; } .panel h2 { font:500 1.45rem Georgia,serif; margin-bottom:6px; } .panel>p { color:var(--muted); font-size:.85rem; margin-top:0; } .status-line { display:flex; align-items:center; gap:10px; margin:25px 0; font-size:.9rem; } .dot { width:9px; height:9px; border-radius:50%; background:#c6ccc5; } .dot.ok { background:#4f9c68; box-shadow:0 0 0 5px rgba(79,156,104,.12); } .embed-box { background:#202a25; color:var(--lime); border-radius:8px; padding:17px; font:.72rem/1.6 monospace; word-break:break-all; margin-top:18px; white-space:pre-wrap; } .code-note { margin-top:14px; color:var(--muted); font-size:.8rem; } .table { width:100%; border-collapse:collapse; margin-top:20px; font-size:.83rem; } .table th { color:var(--muted); text-align:left; font-size:.7rem; text-transform:uppercase; letter-spacing:.08em; padding:10px 8px; border-bottom:1px solid var(--line); } .table td { padding:13px 8px; border-bottom:1px solid var(--line); } .pill { display:inline-block; background:var(--mint); padding:4px 8px; border-radius:20px; font-size:.7rem; font-weight:800; } .pill.warn { background:#f8dfb7; } .manual-panel { max-width:850px; } .manual-panel .step { padding:22px 0; } .owner-accent { color:var(--coral); }
+    @media(max-width:850px) { .hero-grid,.manual-grid,.dashboard-grid { grid-template-columns:1fr; gap:35px; } .visual { min-height:430px; } .phone { right:16%; } .feature-grid,.pricing-grid,.metrics { grid-template-columns:1fr 1fr; } .dash-layout { grid-template-columns:1fr; } .sidebar { min-height:auto; padding:18px; } .sidebar .brand { padding-bottom:18px; } .side-nav { display:flex; overflow:auto; } .side-bottom { display:none; } }
+    @media(max-width:560px) { .shell { width:min(100% - 30px,1180px); } .nav a:not(.button) { display:none; } .hero { padding-top:50px; } .hero-grid { display:block; } .visual { transform:scale(.86); transform-origin:top center; margin-bottom:-55px; } .section { padding:75px 0; } .section-head { display:block; } .section-intro { margin-top:20px; } .feature-grid,.pricing-grid,.metrics { grid-template-columns:1fr; } .plan.featured { transform:none; } .footer { display:block; } .footer span { display:block; margin-top:8px; } .auth-box { padding:25px; } .dash-top { display:block; } .dash-actions { margin-top:15px; } }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <div class="logo-section">📸</div>
-            <h1>Instagram Backend</h1>
-            <p>Manual de Configuração - API de Posts do Instagram</p>
-        </div>
-
-        <div class="content">
-            <!-- Introdução -->
-            <div class="section">
-                <h2>🚀 Bem-vindo</h2>
-                <p>Este é um backend para integração com a API do Instagram Graph que permite buscar posts de um usuário. Para funcionar, você precisará configurar credenciais válidas da Meta/Instagram.</p>
-            </div>
-
-            <!-- Pré-requisitos -->
-            <div class="section">
-                <h2>📋 Pré-requisitos</h2>
-                <ul class="checklist">
-                    <li>Conta Meta/Facebook ativa</li>
-                    <li>Conta Instagram Business ou Creator</li>
-                    <li>Acesso ao Meta App Dashboard</li>
-                </ul>
-            </div>
-
-            <!-- Passo a passo -->
-            <div class="section">
-                <h2>🔧 Passo a Passo</h2>
-
-                <div class="step">
-                    <strong>1. Acessar Meta App Dashboard</strong>
-                    <p>Acesse <a href="https://developers.facebook.com/apps" target="_blank">https://developers.facebook.com/apps</a> e faça login com sua conta Meta.</p>
-                </div>
-
-                <div class="step">
-                    <strong>2. Criar uma Nova Aplicação</strong>
-                    <p>Clique em "Criar Aplicação" e selecione o tipo "Negócio" (Business). Preencha as informações básicas.</p>
-                </div>
-
-                <div class="step">
-                    <strong>3. Adicionar Produto Instagram Graph API</strong>
-                    <p>Na dashboard da aplicação, procure por "Instagram Graph API" e clique em "Configurar" ou "Adicionar Produto".</p>
-                </div>
-
-                <div class="step">
-                    <strong>4. Obter Token de Acesso</strong>
-                    <p>Vá para <strong>Ferramentas → Explorador de Gráficos</strong>. Selecione sua versão da API e clique em "Gerar Token de Acesso". Você pode:</p>
-                    <ul style="margin-left: 20px; margin-top: 10px;">
-                        <li>Usar um token de teste (temporário)</li>
-                        <li>Gerar um token de usuário (permanente com renovação)</li>
-                        <li>Gerar um token de aplicação</li>
-                    </ul>
-                </div>
-
-                <div class="step">
-                    <strong>5. Obter o ID do Usuário/Conta</strong>
-                    <p>No Explorador de Gráficos, execute a query:</p>
-                    <div class="code-block">GET /me</div>
-                    <p>Você receberá um JSON com seu ID. Copie o valor do campo "id".</p>
-                </div>
-
-                <div class="step">
-                    <strong>6. Configurar Variáveis de Ambiente</strong>
-                    <p>Crie um arquivo <code>.env</code> na raiz do projeto com:</p>
-                    <div class="code-block">INSTAGRAM_API_URL=https://graph.instagram.com/v18.0
-INSTAGRAM_ACCESS_TOKEN=seu_token_aqui
-INSTAGRAM_USER_ID=seu_id_aqui
-PORT=3000</div>
-                    <div class="warning">
-                        ⚠️ <strong>Importante:</strong> Nunca compartilhe seu token. Mantenha o arquivo .env seguro e adicione-o ao .gitignore.
-                    </div>
-                </div>
-
-                <div class="step">
-                    <strong>7. Buscar Posts</strong>
-                    <p>Use a query no Explorador de Gráficos para testar antes:</p>
-                    <div class="code-block">GET /me/media?fields=id,caption,media_type,media_url,timestamp</div>
-                </div>
-            </div>
-
-            <!-- Endpoints -->
-            <div class="section">
-                <h2>📡 Endpoints Disponíveis</h2>
-                
-                <div class="endpoints">
-                    <div class="endpoint">
-                        <span class="endpoint-method">GET</span>
-                        <span class="endpoint-path">/health</span>
-                        <p style="margin-top: 8px;">Verifica se o servidor está funcionando.</p>
-                        <p style="margin-top: 8px;"><strong>Resposta:</strong></p>
-                        <div class="code-block">{"status":"ok"}</div>
-                    </div>
-
-                    <div class="endpoint">
-                        <span class="endpoint-method">GET</span>
-                        <span class="endpoint-path">/posts</span>
-                        <p style="margin-top: 8px;">Retorna os posts do usuário Instagram configurado.</p>
-                        <p style="margin-top: 8px;"><strong>Resposta (sucesso):</strong></p>
-                        <div class="code-block">{
-  "data": [
-    {
-      "id": "123456",
-      "caption": "Meu post",
-      "media_type": "IMAGE",
-      "media_url": "https://...",
-      "timestamp": "2024-01-01T12:00:00+0000"
-    }
-  ]
-}</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Solução de Problemas -->
-            <div class="section">
-                <h2>🔍 Solução de Problemas</h2>
-
-                <div class="step">
-                    <strong>Erro 401 - Token inválido</strong>
-                    <p>O token pode ter expirado. Gere um novo no Meta App Dashboard.</p>
-                </div>
-
-                <div class="step">
-                    <strong>Erro 400 - Bad Request</strong>
-                    <p>Verifique se o ID do usuário está correto e se sua conta está vinculada corretamente.</p>
-                </div>
-
-                <div class="step">
-                    <strong>Erro 403 - Permissão negada</strong>
-                    <p>Sua conta pode não ter permissão de Business. Configure sua conta para Business Account ou Creator Account.</p>
-                </div>
-
-                <div class="step">
-                    <strong>Cannot GET / (após deploy)</strong>
-                    <p>Significa que o servidor está rodando, mas há um "Cannot GET /" - isso é normal! Use os endpoints corretos como <code>/health</code> e <code>/posts</code>.</p>
-                </div>
-            </div>
-
-            <!-- Links Úteis -->
-            <div class="section">
-                <h2>🔗 Links Úteis</h2>
-                <div class="links">
-                    <a href="https://developers.facebook.com/apps" target="_blank">Meta App Dashboard</a>
-                    <a href="https://developers.facebook.com/docs/instagram-graph-api" target="_blank">Documentação Instagram Graph API</a>
-                    <a href="https://developers.facebook.com/tools/explorer" target="_blank">Explorador de Gráficos</a>
-                    <a href="https://developers.facebook.com/docs/instagram-graph-api/getting-started" target="_blank">Guia de Início Rápido</a>
-                </div>
-            </div>
-
-            <!-- Checklist de Deploy -->
-            <div class="section">
-                <h2>✅ Checklist de Deploy</h2>
-                <ul class="checklist">
-                    <li>Token de acesso obtido e testado</li>
-                    <li>ID do usuário/conta configurado</li>
-                    <li>Arquivo .env criado com as variáveis</li>
-                    <li>Endpoint /health respondendo 200 OK</li>
-                    <li>Endpoint /posts buscando dados corretamente</li>
-                    <li>.env adicionado ao .gitignore</li>
-                    <li>Docker Compose configurado e container rodando</li>
-                </ul>
-            </div>
-
-            <div class="success">
-                ✨ <strong>Pronto!</strong> Seu backend está configurado e pronto para uso. Acesse os endpoints acima para começar a integração.
-            </div>
-        </div>
-
-        <div class="footer">
-            <p>📚 Manual de Configuração - Instagram Backend</p>
-            <p style="margin-top: 10px; font-size: 0.9em;">API Version: v18.0 | Última atualização: 2024</p>
-        </div>
-    </div>
+  <main id="public-screen" class="screen active"><div class="shell"><header class="topbar"><a class="brand" href="#top"><span class="brand-mark">↗</span> socialdeck</a><nav class="nav"><a href="#features">Recursos</a><a href="#plans">Pacotes</a><a href="#manual">Como funciona</a><button class="button button-quiet" data-action="open-login">Entrar</button></nav></header>
+    <section class="hero" id="top"><div class="hero-grid"><div><span class="eyebrow">Seu conteúdo, em todo lugar</span><h1>O Instagram da sua marca <em>no seu site.</em></h1><p class="hero-copy">SocialDeck transforma posts em uma presença viva para lojas, profissionais e agências. Conecte uma vez. Publique onde sua audiência já está.</p><div class="hero-actions"><button class="button button-primary" data-action="open-register">Começar gratuitamente ↗</button><a class="button button-light" href="#manual">Ver como funciona</a></div><div class="signal"><div><strong>5 min</strong>para conectar</div><div><strong>0 código</strong>para manter</div><div><strong>24/7</strong>conteúdo vivo</div></div></div><div class="visual"><div class="mini-card"><b>+42%</b><span>mais atenção na página inicial</span></div><div class="phone"><div class="phone-top"><span>socialdeck</span><span>•••</span></div><div class="feed"><div class="feed-head"><span class="avatar"></span><span>@sua_marca<br><small style="color:#87938a;font-weight:500">agora mesmo</small></span></div><div class="post-image"></div><div class="post-meta"><span>♡ &nbsp; ♧ &nbsp; ↗</span><b>...</b></div><p style="font-size:.73rem;margin:0"><b>sua_marca</b> Novidades que merecem sair da timeline.</p></div></div></div></div></section>
+    <section class="section" id="features"><div class="section-head"><h2>Menos ferramenta.<br><em style="color:var(--coral);font-style:normal">Mais presença.</em></h2><p class="section-intro">Tudo que você precisa para fazer seu Instagram trabalhar pelo seu site, sem planilhas, prints ou manutenção manual.</p></div><div class="feature-grid"><article class="feature"><div class="feature-icon">◉</div><h3>Feed sempre atual</h3><p>Seus posts aparecem no site automaticamente. Publique no Instagram e o conteúdo se renova por aqui.</p></article><article class="feature"><div class="feature-icon">⌘</div><h3>Feito para incorporar</h3><p>Uma linha de código coloca seu feed em qualquer construtor ou site. O cliente controla, o site continua leve.</p></article><article class="feature"><div class="feature-icon">↗</div><h3>Clareza para o dono</h3><p>Veja contas, conexões e pacotes em um painel administrativo simples, sem se perder em métricas vazias.</p></article></div></section></div>
+    <section class="section pricing" id="plans"><div class="shell"><div class="section-head"><h2>Escolha o ritmo<br>da sua operação.</h2><p class="section-intro">Comece pequeno, avance quando fizer sentido. Pagamentos via Asaas entram depois do piloto interno.</p></div><div class="pricing-grid"><article class="plan"><span class="plan-label">Para começar</span><h3>Starter</h3><div class="price">R$ 19 <small>/ mês</small></div><ul><li>1 site conectado</li><li>Feed de posts</li><li>Manual guiado</li></ul><button class="button button-light" style="margin-top:22px" data-plan="starter">Escolher Starter</button></article><article class="plan featured"><span class="plan-label">Mais escolhido</span><h3>Studio</h3><div class="price">R$ 49 <small>/ mês</small></div><ul><li>3 sites conectados</li><li>Feed + destaques</li><li>Suporte prioritário</li></ul><button class="button button-quiet" style="margin-top:22px" data-plan="studio">Escolher Studio</button></article><article class="plan"><span class="plan-label">Para agências</span><h3>Agency</h3><div class="price">R$ 129 <small>/ mês</small></div><ul><li>Sites ilimitados</li><li>Multi-conta</li><li>Relatórios e marca branca</li></ul><button class="button button-light" style="margin-top:22px" data-plan="agency">Escolher Agency</button></article></div></div></section>
+    <section class="section manual" id="manual"><div class="shell manual-grid"><div><span class="eyebrow">Sem caixa-preta</span><h2 style="margin-top:22px">Do Instagram<br>para o seu site.</h2><p class="section-intro" style="margin-top:25px">O cliente não precisa conhecer API, token ou Meta Business. O manual dentro do painel explica cada decisão e mostra exatamente onde colar o código.</p><button class="button button-primary" style="margin-top:22px" data-action="open-register">Ver o painel na prática ↗</button></div><div class="steps"><div class="step"><span class="step-number">01</span><div><h3>Crie sua conta</h3><p>Escolha o pacote e acesse um painel próprio.</p></div></div><div class="step"><span class="step-number">02</span><div><h3>Conecte o Instagram</h3><p>Insira o token da conta Business ou Creator.</p></div></div><div class="step"><span class="step-number">03</span><div><h3>Copie o widget</h3><p>O painel gera o bloco pronto para o seu site.</p></div></div><div class="step"><span class="step-number">04</span><div><h3>Publique</h3><p>O feed passa a atualizar sem novo trabalho.</p></div></div></div></div></section><div class="shell"><footer class="footer"><span>© 2026 socialdeck</span><span>Instagram para sites, sem ruído.</span></footer></div>
+  </main>
+  <section id="auth-screen" class="screen auth-screen"><div class="shell"><header class="topbar"><a class="brand" href="#" data-action="go-public"><span class="brand-mark">↗</span> socialdeck</a><button class="button button-light" data-action="go-public">Voltar ao site</button></header><div class="auth-wrap"><div class="auth-box"><div class="auth-tabs"><button class="active" data-auth-tab="register">Criar conta</button><button data-auth-tab="login">Entrar</button><button data-auth-tab="admin">Área do dono</button></div><div id="register-form-wrap"><h2>Comece pelo seu nome.</h2><p>Seu painel fica pronto em menos de um minuto.</p><form id="register-form" class="form"><div class="field"><label for="register-name">Nome ou empresa</label><input id="register-name" name="name" placeholder="Casa Amora" required></div><div class="field"><label for="register-email">E-mail</label><input id="register-email" name="email" type="email" placeholder="voce@empresa.com" required></div><div class="field"><label for="register-password">Senha</label><input id="register-password" name="password" type="password" minlength="8" placeholder="mínimo de 8 caracteres" required></div><p class="form-message" id="register-message"></p><button class="button button-primary" type="submit">Criar meu painel ↗</button></form></div><div id="login-form-wrap" hidden><h2>Bom te ver por aqui.</h2><p>Entre para acompanhar seu feed.</p><form id="login-form" class="form"><div class="field"><label for="login-email">E-mail</label><input id="login-email" name="email" type="email" required></div><div class="field"><label for="login-password">Senha</label><input id="login-password" name="password" type="password" required></div><p class="form-message" id="login-message"></p><button class="button button-primary" type="submit">Entrar no painel ↗</button></form></div><div id="admin-form-wrap" hidden><h2>Área do dono.</h2><p>Visão geral das contas e da operação SocialDeck.</p><form id="admin-form" class="form"><div class="field"><label for="admin-email">E-mail do proprietário</label><input id="admin-email" name="email" type="email" value="owner@socialdeck.local" required></div><div class="field"><label for="admin-password">Senha</label><input id="admin-password" name="password" type="password" value="admin12345" required></div><p class="form-message" id="admin-message"></p><button class="button button-quiet" type="submit">Abrir painel administrativo ↗</button></form></div></div></div></div></section>
+  <section id="client-screen" class="screen dashboard"><div class="dash-layout"><aside class="sidebar"><a class="brand" href="#"><span class="brand-mark">↗</span> socialdeck</a><nav class="side-nav"><button class="active" data-dash-tab="client-overview">Visão geral</button><button data-dash-tab="client-connect">Conectar Instagram</button><button data-dash-tab="client-embed">Colocar no site</button><button data-dash-tab="client-manual">Manual do cliente</button></nav><div class="side-bottom"><span id="client-email">Conta interna</span><br><button class="button button-text" data-action="logout">Sair da conta ↗</button></div></aside><div class="dash-main"><div class="dash-top"><div><span class="eyebrow">Painel do cliente</span><h1 id="client-heading">Seu conteúdo, em movimento.</h1><p id="client-subheading">Conecte seu Instagram e dê um lugar para ele viver.</p></div><div class="dash-actions"><button class="button button-light" data-dash-tab="client-manual">Ler manual</button><button class="button button-primary" data-dash-tab="client-connect">Conectar agora</button></div></div><section class="dash-section active" id="client-overview"><div class="metrics"><div class="metric"><span>Status da conexão</span><strong id="metric-status">—</strong></div><div class="metric"><span>Plano atual</span><strong id="metric-plan">Starter</strong></div><div class="metric"><span>Sites ativos</span><strong>1</strong></div><div class="metric"><span>Atualização</span><strong>Ao vivo</strong></div></div><div class="dashboard-grid"><div class="panel"><h2>Seu feed no site</h2><p>Uma visão rápida do que o visitante verá.</p><div class="status-line"><span class="dot" id="feed-dot"></span><span id="feed-status">Instagram ainda não conectado</span></div><button class="button button-primary" data-dash-tab="client-connect">Configurar Instagram ↗</button></div><div class="panel"><h2>Próximo passo</h2><p>Depois de conectar, copie seu widget e cole em uma seção HTML do seu site.</p><button class="button button-light" data-dash-tab="client-embed">Ver código do widget</button></div></div></section><section class="dash-section" id="client-connect"><div class="panel" style="max-width:650px"><h2>Conecte seu Instagram</h2><p>Use um token da sua conta Business ou Creator. Ele fica associado apenas a esta conta.</p><form id="connect-form" class="form" style="margin-top:25px"><div class="field"><label for="instagram-token">Token de acesso do Instagram</label><input id="instagram-token" name="accessToken" type="password" placeholder="Cole seu token aqui" required></div><p class="form-message" id="connect-message"></p><button class="button button-primary" type="submit">Salvar conexão ↗</button></form><div class="code-note">Ainda não tem um token? Abra o Manual do cliente no menu ao lado para seguir o passo a passo.</div></div></section><section class="dash-section" id="client-embed"><div class="panel"><h2>Coloque o feed no seu site</h2><p>Copie este bloco e cole onde deseja exibir seus posts. Funciona em WordPress, Wix, Webflow e sites próprios.</p><div class="embed-box" id="embed-code">Carregando seu código...</div><button class="button button-primary" style="margin-top:15px" data-action="copy-embed">Copiar código ↗</button><div class="code-note">O widget é público para que o site possa buscar os posts sem expor seu painel. O token permanece no SocialDeck.</div></div></section><section class="dash-section" id="client-manual"><div class="panel manual-panel"><span class="eyebrow">Manual do cliente</span><h2 style="margin-top:18px">Conecte sem depender de ninguém.</h2><div class="steps"><div class="step"><span class="step-number">01</span><div><h3>Transforme sua conta em profissional</h3><p>No Instagram, acesse Configurações → Tipo de conta e ferramentas → Mudar para conta profissional. Escolha Business ou Creator.</p></div></div><div class="step"><span class="step-number">02</span><div><h3>Crie ou acesse o Meta Developers</h3><p>Entre em developers.facebook.com, crie um aplicativo do tipo Business e adicione o produto Instagram Graph API.</p></div></div><div class="step"><span class="step-number">03</span><div><h3>Gere o token</h3><p>Use o Graph API Explorer, selecione sua conta e conceda as permissões de leitura de mídia. Copie o token gerado.</p></div></div><div class="step"><span class="step-number">04</span><div><h3>Cole no SocialDeck</h3><p>Volte para “Conectar Instagram”, cole o token, salve e confirme o status conectado.</p></div></div><div class="step"><span class="step-number">05</span><div><h3>Instale no seu site</h3><p>Abra “Colocar no site”, copie o código e cole em um bloco HTML. Pronto: o feed aparece no seu site.</p></div></div></div></div></section></div></div></section>
+  <section id="admin-screen" class="screen dashboard"><div class="dash-layout"><aside class="sidebar"><a class="brand" href="#"><span class="brand-mark">↗</span> socialdeck</a><div style="color:#9aa69d;font-size:.7rem;text-transform:uppercase;letter-spacing:.14em;padding:0 12px 16px">Owner workspace</div><nav class="side-nav"><button class="active" data-dash-tab="admin-overview">Visão geral</button><button data-dash-tab="admin-accounts">Contas clientes</button><button data-dash-tab="admin-roadmap">Operação & roadmap</button></nav><div class="side-bottom"><span>owner@socialdeck.local</span><br><button class="button button-text" data-action="logout">Sair da área do dono ↗</button></div></aside><div class="dash-main"><div class="dash-top"><div><span class="eyebrow owner-accent">Painel administrativo</span><h1>O negócio de um olhar.</h1><p>Acompanhe adoção, conexões e o próximo passo do produto.</p></div><div class="dash-actions"><button class="button button-light" data-action="go-public">Ver site público</button></div></div><section class="dash-section active" id="admin-overview"><div class="metrics"><div class="metric"><span>Contas criadas</span><strong id="admin-total">—</strong></div><div class="metric"><span>Instagram conectado</span><strong id="admin-connected">—</strong></div><div class="metric"><span>Plano Starter</span><strong id="admin-starter">—</strong></div><div class="metric"><span>MRR projetado</span><strong id="admin-revenue">R$ 0</strong></div></div><div class="panel"><h2>Contas recentes</h2><p>Clientes que estão usando o SocialDeck agora.</p><table class="table"><thead><tr><th>Cliente</th><th>Plano</th><th>Instagram</th><th>Entrada</th></tr></thead><tbody id="accounts-table"></tbody></table></div></section><section class="dash-section" id="admin-accounts"><div class="panel"><h2>Todas as contas</h2><p>O inventário operacional do seu SaaS.</p><table class="table"><thead><tr><th>Cliente</th><th>E-mail</th><th>Plano</th><th>Status</th></tr></thead><tbody id="all-accounts-table"></tbody></table></div></section><section class="dash-section" id="admin-roadmap"><div class="panel manual-panel"><span class="eyebrow">Decisões de lançamento</span><h2 style="margin-top:18px">Construir confiança antes de cobrar.</h2><div class="steps"><div class="step"><span class="step-number">01</span><div><h3>Piloto interno <span class="pill">agora</span></h3><p>Validar onboarding, isolamento de contas e instalação do widget com clientes próximos.</p></div></div><div class="step"><span class="step-number">02</span><div><h3>Persistência segura</h3><p>Trocar o store em memória por banco e criptografar tokens antes de produção.</p></div></div><div class="step"><span class="step-number">03</span><div><h3>Asaas <span class="pill warn">próxima fase</span></h3><p>Adicionar planos, checkout e webhooks verificados somente quando o uso interno estiver estável.</p></div></div></div></div></section></div></div></section>
+  <script>
+    const state={token:localStorage.getItem('socialdeck_token'),role:localStorage.getItem('socialdeck_role'),account:null}; const $=s=>document.querySelector(s); const $$=s=>[...document.querySelectorAll(s)];
+    const api=async(path,options={})=>{const response=await fetch(path,{...options,headers:{'Content-Type':'application/json',...(state.token?{Authorization:`Bearer ${state.token}`}:{ }),...(options.headers||{})}});const body=await response.json().catch(()=>({}));if(!response.ok)throw new Error(body.message||'Não foi possível concluir a operação.');return body;};
+    const screen=id=>{$$('.screen').forEach(item=>item.classList.remove('active'));$(`#${id}`).classList.add('active');window.scrollTo(0,0)}; const message=(id,text)=>$(id).textContent=text;
+    const showAuth=tab=>{screen('auth-screen');$$('[data-auth-tab]').forEach(b=>b.classList.toggle('active',b.dataset.authTab===tab));['register','login','admin'].forEach(n=>{ $(`#${n}-form-wrap`).hidden=n!==tab; });};
+    const showDashTab=tab=>{ $$('[data-dash-tab]').forEach(b=>b.classList.toggle('active',b.dataset.dashTab===tab)); $$('.dash-section').forEach(s=>s.classList.toggle('active',s.id===tab)); if(tab==='client-embed')renderEmbed(); };
+    const renderEmbed=()=>{if(state.account)$('#embed-code').textContent=`<div id="socialdeck-feed"></div>\n<script src="${location.origin}/widget.js"\n  data-account="${state.account.id}"\n  data-target="socialdeck-feed"><\/script>`;};
+    const openClient=async()=>{screen('client-screen');try{state.account=await api('/api/account');$('#client-email').textContent=state.account.email;$('#metric-plan').textContent=state.account.plan||'Starter';const connected=state.account.instagramConnected;$('#metric-status').textContent=connected?'Ativo':'Pendente';$('#feed-dot').classList.toggle('ok',connected);$('#feed-status').textContent=connected?'Feed conectado e pronto para publicar':'Instagram ainda não conectado';$('#client-heading').textContent=`Olá, ${state.account.name.split(' ')[0]}.`;$('#client-subheading').textContent=connected?'Seu conteúdo está pronto para aparecer no site.':'Conecte seu Instagram e dê um lugar para ele viver.';renderEmbed();}catch(e){logout();}};
+    const renderAccounts=(accounts,selector,compact)=>{$(selector).innerHTML=accounts.length?accounts.map(a=>`<tr><td><b>${a.name}</b>${compact?`<br><small style="color:var(--muted)">${a.email}</small>`:''}</td>${compact?'':`<td>${a.email}</td>`}<td><span class="pill">${a.plan}</span></td><td><span class="pill ${a.connected?'':'warn'}">${a.connected?'Conectado':'Pendente'}</span></td>${compact?`<td>${new Date(a.createdAt).toLocaleDateString('pt-BR')}</td>`:''}</tr>`).join(''):'<tr><td colspan="4" style="color:var(--muted)">Nenhuma conta criada ainda.</td></tr>';};
+    const openAdmin=async()=>{screen('admin-screen');try{const data=await api('/api/admin/overview');$('#admin-total').textContent=data.metrics.totalAccounts;$('#admin-connected').textContent=data.metrics.connectedAccounts;$('#admin-starter').textContent=data.metrics.starter;$('#admin-revenue').textContent=`R$ ${data.metrics.monthlyRevenue}`;renderAccounts(data.recentAccounts,'#accounts-table',true);renderAccounts(await api('/api/admin/accounts'),'#all-accounts-table',false);}catch(e){alert(e.message);logout();}};
+    const logout=()=>{localStorage.removeItem('socialdeck_token');localStorage.removeItem('socialdeck_role');state.token=null;state.role=null;state.account=null;screen('public-screen');};
+    document.addEventListener('click',e=>{const action=e.target.closest('[data-action]')?.dataset.action;if(action==='open-login')showAuth('login');if(action==='open-register')showAuth('register');if(action==='go-public')screen('public-screen');if(action==='logout')logout();const tab=e.target.closest('[data-dash-tab]')?.dataset.dashTab;if(tab)showDashTab(tab);if(e.target.closest('[data-plan]'))showAuth('register');if(action==='copy-embed'){navigator.clipboard?.writeText($('#embed-code').textContent);e.target.textContent='Código copiado ✓';setTimeout(()=>e.target.textContent='Copiar código ↗',1800);}});
+    $$('[data-auth-tab]').forEach(b=>b.addEventListener('click',()=>showAuth(b.dataset.authTab)));
+    $('#register-form').addEventListener('submit',async e=>{e.preventDefault();try{const d=await api('/api/auth/register',{method:'POST',body:JSON.stringify(Object.fromEntries(new FormData(e.target)))});state.token=d.token;state.role='client';localStorage.setItem('socialdeck_token',state.token);localStorage.setItem('socialdeck_role','client');await openClient();}catch(err){message('#register-message',err.message);}});
+    $('#login-form').addEventListener('submit',async e=>{e.preventDefault();try{const d=await api('/api/auth/login',{method:'POST',body:JSON.stringify(Object.fromEntries(new FormData(e.target)))});state.token=d.token;state.role='client';localStorage.setItem('socialdeck_token',state.token);localStorage.setItem('socialdeck_role','client');await openClient();}catch(err){message('#login-message',err.message);}});
+    $('#admin-form').addEventListener('submit',async e=>{e.preventDefault();try{const d=await api('/api/auth/admin-login',{method:'POST',body:JSON.stringify(Object.fromEntries(new FormData(e.target)))});state.token=d.token;state.role='admin';localStorage.setItem('socialdeck_token',state.token);localStorage.setItem('socialdeck_role','admin');await openAdmin();}catch(err){message('#admin-message',err.message);}});
+    $('#connect-form').addEventListener('submit',async e=>{e.preventDefault();try{await api('/api/account/instagram',{method:'PUT',body:JSON.stringify(Object.fromEntries(new FormData(e.target)))});message('#connect-message','Conexão salva. Seu feed está pronto para ser instalado.');await openClient();showDashTab('client-embed');}catch(err){message('#connect-message',err.message);}});
+    if(state.token&&state.role==='admin')openAdmin();else if(state.token&&state.role==='client')openClient();
+  </script>
 </body>
 </html>
