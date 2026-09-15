@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { accountStore } from '../stores/account.store';
+import { findAccountById } from '../repositories/account.data';
 import { InstagramService } from '../services/instagram.service';
 
 export class InstagramController {
@@ -9,7 +9,7 @@ export class InstagramController {
 
   public async getPosts(req: Request, res: Response): Promise<void> {
     try {
-      const account = req.accountId ? accountStore.findById(req.accountId) : undefined;
+      const account = req.accountId ? await findAccountById(req.accountId) : undefined;
       if (!account?.instagramAccessToken) {
         res.status(422).json({ message: 'Instagram account is not configured' });
         return;

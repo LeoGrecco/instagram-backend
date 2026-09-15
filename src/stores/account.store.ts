@@ -1,5 +1,5 @@
 import { randomUUID } from 'crypto';
-import { Account } from '../types';
+import { Account, AsaasAccount } from '../types';
 
 export interface AccountStore {
   create(account: Omit<Account, 'id' | 'createdAt'>): Account;
@@ -44,3 +44,23 @@ export class InMemoryAccountStore implements AccountStore {
 }
 
 export const accountStore = new InMemoryAccountStore();
+
+export class InMemoryAsaasStore {
+  private accounts = new Map<string, AsaasAccount>();
+
+  public list(): AsaasAccount[] {
+    return [...this.accounts.values()];
+  }
+
+  public create(account: Omit<AsaasAccount, 'id' | 'createdAt'>): AsaasAccount {
+    const created: AsaasAccount = { ...account, id: randomUUID(), createdAt: new Date().toISOString() };
+    this.accounts.set(created.id, created);
+    return created;
+  }
+
+  public findById(id: string): AsaasAccount | undefined {
+    return this.accounts.get(id);
+  }
+}
+
+export const asaasStore = new InMemoryAsaasStore();

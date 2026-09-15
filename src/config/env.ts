@@ -10,4 +10,8 @@ export const ENV = {
   SESSION_TTL_HOURS: Number(process.env.SESSION_TTL_HOURS || 24),
   ADMIN_EMAIL: process.env.ADMIN_EMAIL || 'owner@socialdeck.local',
   ADMIN_PASSWORD: process.env.ADMIN_PASSWORD || 'admin12345',
+  DATABASE_URL: process.env.DATABASE_URL || '',
+  ASAAS_API_KEY: process.env.ASAAS_API_KEY || '',
+  ASAAS_ENVIRONMENT: process.env.ASAAS_ENVIRONMENT === 'production' ? 'production' : 'sandbox',
+  ASAAS_WEBHOOK_TOKEN: process.env.ASAAS_WEBHOOK_TOKEN || '',
 };

@@ -8,5 +8,8 @@ export const setAdminRoutes = (): Router => {
   router.use(requireAdmin);
   router.get('/overview', controller.overview.bind(controller));
   router.get('/accounts', controller.accounts.bind(controller));
+  router.get('/asaas', controller.asaasSettings.bind(controller));
+  router.post('/asaas', controller.addAsaasAccount.bind(controller));
+  router.post('/asaas/:id/test', controller.testAsaasConnection.bind(controller));
   return router;
 };

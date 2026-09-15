@@ -1,0 +1,67 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Plan {
+  starter
+  studio
+  agency
+}
+
+enum SubscriptionStatus {
+  pending
+  active
+  overdue
+  canceled
+  expired
+}
+
+model Account {
+  id                 String             @id @default(uuid())
+  name               String
+  email              String             @unique
+  passwordHash       String
+  plan               Plan               @default(starter)
+  instagramToken     String?
+  createdAt          DateTime           @default(now())
+  updatedAt          DateTime           @updatedAt
+  asaasCustomer      AsaasCustomer?
+  subscriptions      Subscription[]
+}
+
+model AsaasCustomer {
+  id          String   @id @default(uuid())
+  accountId   String   @unique
+  asaasId     String   @unique
+  environment String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  account     Account  @relation(fields: [accountId], references: [id], onDelete: Cascade)
+}
+
+model Subscription {
+  id                   String             @id @default(uuid())
+  accountId            String
+  asaasSubscriptionId  String             @unique
+  plan                 Plan
+  status               SubscriptionStatus @default(pending)
+  nextDueDate          DateTime?
+  createdAt            DateTime           @default(now())
+  updatedAt            DateTime           @updatedAt
+  account              Account            @relation(fields: [accountId], references: [id], onDelete: Cascade)
+
+  @@index([accountId, status])
+}
+
+model WebhookEvent {
+  id          String   @id @default(uuid())
+  externalId  String   @unique
+  event       String
+  payload     Json
+  processedAt DateTime @default(now())
+}

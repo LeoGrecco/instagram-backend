@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
-import { accountStore } from '../stores/account.store';
+import { findAccountById, updateInstagramToken } from '../repositories/account.data';
 
 export class AccountController {
-  public getProfile(req: Request, res: Response): void {
-    const account = req.accountId ? accountStore.findById(req.accountId) : undefined;
+  public async getProfile(req: Request, res: Response): Promise<void> {
+    const account = req.accountId ? await findAccountById(req.accountId) : undefined;
     if (!account) {
       res.status(404).json({ message: 'Account not found' });
       return;
@@ -11,13 +11,13 @@ export class AccountController {
     res.json({ id: account.id, name: account.name, email: account.email, createdAt: account.createdAt, instagramConnected: Boolean(account.instagramAccessToken) });
   }
 
-  public connectInstagram(req: Request, res: Response): void {
+  public async connectInstagram(req: Request, res: Response): Promise<void> {
     const token = typeof req.body.accessToken === 'string' ? req.body.accessToken.trim() : '';
     if (!token) {
       res.status(400).json({ message: 'Instagram accessToken is required' });
       return;
     }
-    const account = req.accountId ? accountStore.updateInstagramToken(req.accountId, token) : undefined;
+    const account = req.accountId ? await updateInstagramToken(req.accountId, token) : undefined;
     if (!account) {
       res.status(404).json({ message: 'Account not found' });
       return;

@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
-import { accountStore } from '../stores/account.store';
+import { findAccountById } from '../repositories/account.data';
 import { InstagramService } from '../services/instagram.service';
 
 export class WidgetController {
   public async posts(req: Request, res: Response): Promise<void> {
-    const account = accountStore.findById(req.params.accountId);
+    const account = await findAccountById(req.params.accountId);
     if (!account?.instagramAccessToken) {
       res.status(422).json({ message: 'This widget is not connected to Instagram yet' });
       return;

@@ -111,6 +111,32 @@ GET  /health
 3. Operations: add rate limiting, audit logs, observability and Instagram token refresh handling.
 4. Billing: integrate Asaas behind a billing service and verified webhooks only after the previous stages are stable.
 
+## Asaas configuration
+
+The owner configures Asaas from the web panel at:
+
+```text
+Entrar -> Área do dono -> Operação & roadmap -> Contas Asaas
+```
+
+Add an internal name, choose `Sandbox para testes` or `Produção`, paste the Asaas API key and optionally add a Wallet ID for split payments. The panel stores the credential for the current internal-pilot process and only displays a masked version afterwards. Use **Testar conexão** before activating payments.
+
+The admin panel validates credentials against Asaas' `myAccount` endpoint. Subscription creation and webhook processing are available through the billing API, but the public checkout should remain disabled until the production database and secrets are configured.
+
+## PostgreSQL and billing setup
+
+The production path now uses Prisma/PostgreSQL when `DATABASE_URL` is present. Run the following during deployment:
+
+```bash
+npm run db:generate
+npm run db:migrate
+npm run start
+```
+
+Required variables are listed in `.env.example`: `DATABASE_URL`, `ASAAS_API_KEY`, `ASAAS_ENVIRONMENT` and `ASAAS_WEBHOOK_TOKEN`. Configure the Asaas webhook URL as `/api/billing/webhooks/asaas` and send the same value as the `asaas-access-token` header.
+
+The authenticated subscription endpoint is `POST /api/billing/subscribe` with `{ "plan": "starter" | "studio" | "agency" }`. Webhook events are recorded by external ID so retries are ignored safely.
+
 ## Usage
 To start the application locally, run:
 ```

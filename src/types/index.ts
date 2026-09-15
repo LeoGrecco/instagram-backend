@@ -29,3 +29,13 @@ export interface SessionAccount {
     email: string;
     createdAt: string;
 }
+
+export interface AsaasAccount {
+    id: string;
+    name: string;
+    environment: 'sandbox' | 'production';
+    apiKey: string;
+    walletId?: string;
+    active: boolean;
+    createdAt: string;
+}

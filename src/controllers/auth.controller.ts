@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { authService } from '../services/auth.service';
 import { accountStore } from '../stores/account.store';
 import { ENV } from '../config/env';
+import { createAccount, findAccountByEmail } from '../repositories/account.data';
 
 const publicAccount = (account: { id: string; name: string; email: string; createdAt: string }) => ({
   id: account.id,
@@ -11,7 +12,7 @@ const publicAccount = (account: { id: string; name: string; email: string; creat
 });
 
 export class AuthController {
-  public register(req: Request, res: Response): void {
+  public async register(req: Request, res: Response): Promise<void> {
     const name = typeof req.body.name === 'string' ? req.body.name.trim() : '';
     const email = typeof req.body.email === 'string' ? req.body.email.trim().toLowerCase() : '';
     const password = typeof req.body.password === 'string' ? req.body.password : '';
@@ -21,18 +22,18 @@ export class AuthController {
       res.status(400).json({ message: 'Name, valid email and password with at least 8 characters are required' });
       return;
     }
-    if (accountStore.findByEmail(email)) {
+    if (await findAccountByEmail(email)) {
       res.status(409).json({ message: 'Email is already registered' });
       return;
     }
-    const account = accountStore.create({ name, email, passwordHash: authService.hashPassword(password), plan });
+    const account = await createAccount({ name, email, passwordHash: authService.hashPassword(password), plan });
     res.status(201).json({ account: publicAccount(account), token: authService.createSession(account) });
   }
 
-  public login(req: Request, res: Response): void {
+  public async login(req: Request, res: Response): Promise<void> {
     const email = typeof req.body.email === 'string' ? req.body.email.trim().toLowerCase() : '';
     const password = typeof req.body.password === 'string' ? req.body.password : '';
-    const account = accountStore.findByEmail(email);
+    const account = await findAccountByEmail(email);
     if (!account || !authService.verifyPassword(password, account.passwordHash)) {
       res.status(401).json({ message: 'Invalid email or password' });
       return;

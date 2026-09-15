@@ -5,6 +5,7 @@ import { setAuthRoutes } from './routes/auth.routes';
 import { setAccountRoutes } from './routes/account.routes';
 import { setAdminRoutes } from './routes/admin.routes';
 import { setWidgetRoutes } from './routes/widget.routes';
+import { setBillingRoutes } from './routes/billing.routes';
 import { ENV } from './config/env';
 
 export const createApp = (): express.Express => {
@@ -23,6 +24,7 @@ export const createApp = (): express.Express => {
   app.use('/api/account', setAccountRoutes());
   app.use('/api/admin', setAdminRoutes());
   app.use('/api/widget', setWidgetRoutes());
+  app.use('/api/billing', setBillingRoutes());
   app.use('/api', setRoutes());
   return app;
 };
