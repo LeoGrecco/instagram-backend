@@ -27,7 +27,7 @@ services:
         condition: service_healthy
     restart: unless-stopped
     ports:
-      - '3000:3000'
+      - "${APP_BIND_ADDRESS:-127.0.0.1}:3000:3000"
     environment:
       NODE_ENV: ${NODE_ENV:?NODE_ENV required}
       PORT: 3000
