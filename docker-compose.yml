@@ -6,9 +6,9 @@ services:
     container_name: socialdeck-postgres
     restart: unless-stopped
     environment:
-      POSTGRES_USER: ${POSTGRES_USER:-socialdeck}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-socialdeck}
-      POSTGRES_DB: ${POSTGRES_DB:-socialdeck}
+      POSTGRES_USER: ${POSTGRES_USER:?POSTGRES_USER required}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?POSTGRES_PASSWORD required}
+      POSTGRES_DB: ${POSTGRES_DB:?POSTGRES_DB required}
     volumes:
       - socialdeck-postgres:/var/lib/postgresql/data
     healthcheck:
@@ -29,15 +29,18 @@ services:
     ports:
       - '3000:3000'
     environment:
+      NODE_ENV: ${NODE_ENV:?NODE_ENV required}
       PORT: 3000
-      INSTAGRAM_API_URL: https://graph.instagram.com
-      INSTAGRAM_ACCESS_TOKEN: ${INSTAGRAM_ACCESS_TOKEN:-your_access_token}
-      APP_SECRET: ${APP_SECRET:-change-me-in-production}
+      ADMIN_EMAIL: ${ADMIN_EMAIL:?ADMIN_EMAIL required}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:?ADMIN_PASSWORD required}
+      INSTAGRAM_API_URL: ${INSTAGRAM_API_URL:-https://graph.instagram.com}
+      INSTAGRAM_ACCESS_TOKEN: ${INSTAGRAM_ACCESS_TOKEN:-}
+      APP_SECRET: ${APP_SECRET:?APP_SECRET required}
       SESSION_TTL_HOURS: ${SESSION_TTL_HOURS:-24}
-      DATABASE_URL: ${DATABASE_URL:-postgresql://socialdeck:socialdeck@postgres:5432/socialdeck?schema=public}
+      DATABASE_URL: ${DATABASE_URL:?DATABASE_URL required}
       ASAAS_API_KEY: ${ASAAS_API_KEY:-}
       ASAAS_ENVIRONMENT: ${ASAAS_ENVIRONMENT:-sandbox}
-      ASAAS_WEBHOOK_TOKEN: ${ASAAS_WEBHOOK_TOKEN:-change-me}
+      ASAAS_WEBHOOK_TOKEN: ${ASAAS_WEBHOOK_TOKEN:?ASAAS_WEBHOOK_TOKEN required}
     labels:
       - 'io.casaos.app.enable=true'
       - 'io.casaos.app.name=Instagram Backend'

@@ -18,8 +18,8 @@ export class InstagramController {
       const posts = await this.instagramService.fetchPosts();
       res.status(200).json(posts);
     } catch (error) {
-      const message = error instanceof Error ? error.message : 'Unknown error';
-      res.status(500).json({ message: 'Error fetching posts', error: message });
+      console.error('Instagram fetch failed', error instanceof Error ? error.message : error);
+      res.status(500).json({ message: 'Error fetching posts' });
     }
   }
 }

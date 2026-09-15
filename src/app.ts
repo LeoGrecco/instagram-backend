@@ -1,4 +1,6 @@
 import express from 'express';
+import helmet from 'helmet';
+import rateLimit from 'express-rate-limit';
 import path from 'path';
 import { setRoutes } from './routes/instagram.routes';
 import { setAuthRoutes } from './routes/auth.routes';
@@ -11,8 +13,12 @@ import { ENV } from './config/env';
 export const createApp = (): express.Express => {
   const app = express();
 
-  app.use(express.json());
-  app.use(express.urlencoded({ extended: true }));
+  app.disable('x-powered-by');
+  app.set('trust proxy', 1);
+  app.use(express.json({ limit: '100kb' }));
+  app.use(express.urlencoded({ extended: true, limit: '100kb' }));
+  app.use(helmet());
+  app.use(rateLimit({ windowMs: 15 * 60 * 1000, limit: 300, standardHeaders: 'draft-7', legacyHeaders: false }));
 
   app.use(express.static(path.join(__dirname, '../public')));
 
